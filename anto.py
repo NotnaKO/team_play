@@ -19,7 +19,7 @@ def draw():
     map_file = "map.png"
     with open(map_file, "wb") as file:
         file.write(response.content)
-    screen = pygame.display.set_mode((600, 600))
+    screen = pygame.display.set_mode((600, 450))
     # Рисуем картинку, загружаемую из только что созданного файла.
     screen.blit(pygame.image.load(map_file), (0, 0))
     ch = False
@@ -27,7 +27,8 @@ def draw():
 
 coord = list(map(float, input().split()))
 z = int(input())
-step = 0
+step_y = 16 / z
+step_x = 32 / z
 pygame.init()
 ch = True
 while True:
@@ -47,16 +48,16 @@ while True:
                     z = 17
                 ch = True
             if event.key == pygame.K_UP:
-                coord[1] += step
+                coord[1] += step_y
                 ch = True
             if event.key == pygame.K_DOWN:
-                coord[1] -= step
+                coord[1] -= step_y
                 ch = True
             if event.key == pygame.K_LEFT:
-                coord[0] -= step
+                coord[0] -= step_x
                 ch = True
             if event.key == pygame.K_RIGHT:
-                coord[0] += step
+                coord[0] += step_x
                 ch = True
     if ch:
         draw()
