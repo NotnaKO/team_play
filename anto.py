@@ -6,7 +6,7 @@ import requests
 
 coord = ','.join(input().split())
 z = int(input())
-map_request = f"http://static-maps.yandex.ru/1.x/?&pt={coord}&z={z}"
+map_request = f"http://static-maps.yandex.ru/1.x/?&pt={coord}&z={z}&l=map"
 response = requests.get(map_request)
 
 if not response:
