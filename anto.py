@@ -27,7 +27,8 @@ def draw():
 
 coord = list(map(float, input().split()))
 z = int(input())
-step = 1
+step_y = 0
+step_x = 0
 pygame.init()
 ch = True
 while True:
@@ -47,16 +48,16 @@ while True:
                     z = 17
                 ch = True
             if event.key == pygame.K_UP:
-                coord[1] += step
+                coord[1] += step_y
                 ch = True
             if event.key == pygame.K_DOWN:
-                coord[1] -= step
+                coord[1] -= step_y
                 ch = True
             if event.key == pygame.K_LEFT:
-                coord[0] -= step
+                coord[0] -= step_x
                 ch = True
             if event.key == pygame.K_RIGHT:
-                coord[0] += step
+                coord[0] += step_x
                 ch = True
     if ch:
         draw()
