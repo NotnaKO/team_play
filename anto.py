@@ -4,7 +4,7 @@ import sys
 import pygame
 import requests
 
-coord = ','.join(list(map(float, input().split())))
+coord = ','.join(input().split())
 z = int(input())
 map_request = f"http://static-maps.yandex.ru/1.x/?&pt={coord}&z={z}"
 response = requests.get(map_request)
