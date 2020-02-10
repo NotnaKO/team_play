@@ -7,7 +7,7 @@ import requests
 
 def draw():
     global map_file, ch
-    map_request = f"http://static-maps.yandex.ru/1.x/?&pt={coord}&z={z}&l=map"
+    map_request = f"http://static-maps.yandex.ru/1.x/?&pt={','.join(map(str, coord))}&z={z}&l=map"
     response = requests.get(map_request)
 
     if not response:
@@ -25,8 +25,9 @@ def draw():
     ch = False
 
 
-coord = ','.join(input().split())
+coord = list(map(float, input().split()))
 z = int(input())
+step = 1
 pygame.init()
 ch = True
 while True:
@@ -44,6 +45,18 @@ while True:
                 z += 1
                 if z > 17:
                     z = 17
+                ch = True
+            if event.key == pygame.K_UP:
+                coord[1] += step
+                ch = True
+            if event.key == pygame.K_DOWN:
+                coord[1] -= step
+                ch = True
+            if event.key == pygame.K_LEFT:
+                coord[0] -= step
+                ch = True
+            if event.key == pygame.K_RIGHT:
+                coord[0] += step
                 ch = True
     if ch:
         draw()
